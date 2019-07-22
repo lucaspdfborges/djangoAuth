@@ -1,6 +1,6 @@
 # Django Authorization App Implemented
 
-This is a Dajngo app to be resused in other projects, which has:
+This is a Django app to be resused in other projects, which has:
 - SignUp
 - LogIn
 - LogOut
