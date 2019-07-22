@@ -20,6 +20,8 @@ def signup(request):
 
     return render(request, 'signup.html', {'form': form})
 
+def home(request):
+     return render(request, 'home.html')
 
 @method_decorator(login_required, name='dispatch')
 class UserUpdateView(UpdateView):
