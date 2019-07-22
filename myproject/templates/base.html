@@ -21,6 +21,7 @@
           <div class="collapse navbar-collapse" id="mainMenu">
             <ul class="navbar-nav ml-auto">
               {% if user.is_authenticated %}
+              <a href="{% url 'my_account' %}"><img src="{{ user.profile.picture.url }}" alt="profile picture" class="rounded-circle" style="width:45px; margin-top:0;"/></a>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{ user.username }}
