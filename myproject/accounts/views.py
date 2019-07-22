@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView
 from django.contrib.auth.models import User
 from django.db import transaction
+from django.contrib import messages
 
 def signup(request):
     if request.method == 'POST':
@@ -44,10 +45,10 @@ def update_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, _('Your profile was successfully updated!'))
-            return redirect('settings:profile')
+            messages.success(request, 'Your profile was successfully updated!')
+            return redirect('home')
         else:
-            messages.error(request, _('Please correct the error below.'))
+            messages.error(request, 'Please correct the error below.')
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
