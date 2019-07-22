@@ -13,7 +13,23 @@ class Profile(models.Model):
         (ADMIN, 'Admin'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True)
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
+
+    def __str__(self):
+        return (self.user.first_name + ' ' + self.user.last_name)
+
+    def isStaff(self):
+        if self.role is 2:
+            return True
+        else:
+            return False
+
+    def isAdmin(self):
+        if self.role is 3:
+            return True
+        else:
+            return False
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
