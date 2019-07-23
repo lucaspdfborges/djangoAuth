@@ -8,13 +8,9 @@
 
 {% block content %}
 
-  <div class="row">
-    <div class="col-lg-6 col-md-8 col-sm-10">
       <form enctype="multipart/form-data" method="post" novalidate>
         {% csrf_token %}
         {% include 'includes/account_form.html' %}
         <button type="submit" class="btn btn-success">Save changes</button>
       </form>
-    </div>
-  </div>
 {% endblock %}

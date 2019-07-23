@@ -14,3 +14,17 @@ body {
 .logo a:active {
   text-decoration: none;
 }
+
+input{
+  font-family: 'Cinzel', serif;
+
+}
+
+.form-group-accounts{
+  display: grid;
+  grid-template-columns: 40vw 40vw;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+}
+.form-group-accounts div{
+}

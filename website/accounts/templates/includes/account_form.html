@@ -8,6 +8,7 @@
   </div>
 {% endif %}
 
+<div class="form-group-accounts">
 {% for field in user_form %}
   <div class="form-group">
     {{ field.label_tag }}
@@ -24,10 +25,17 @@
     {% endif %}
   </div>
 {% endfor %}
+</div>
+
 
 {% for field in profile_form %}
   <div class="form-group">
     {{ field.label_tag }}
+    {% if field|is_picture %}
+    <img src="{{ user.profile.picture.url }}" alt="profile picture" class="shadow ounded-circle" style="width:90px; margin-top:0;"/><br/>
+    <label for="id_picture" class="btn btn-secondary">Select file</label>
+    <br/>
+    {% endif %}
     {% render_field field class=field|input_class %}
     {% for error in field.errors %}
       <div class="invalid-feedback">
