@@ -8,6 +8,27 @@
   </div>
 {% endif %}
 
+{% for field in profile_form %}
+
+  <div class="form-group">
+    <img src="{{ user.profile.picture.url }}" alt="profile picture" class="img-thumbnail rounded-circle" style="width:90px; margin-top:0;"/>
+    <label for="id_picture" class="btn btn-light">Select file</label>
+    <div class="input-file">
+      {% render_field field class=field|input_class %}
+    </div>
+    {% for error in field.errors %}
+      <div class="invalid-feedback">
+        {{ error }}
+      </div>
+    {% endfor %}
+    {% if field.help_text %}
+      <small class="form-text text-muted">
+        {{ field.help_text|safe }}
+      </small>
+    {% endif %}
+  </div>
+{% endfor %}
+
 <div class="form-group-accounts">
 {% for field in user_form %}
   <div class="form-group">
@@ -26,26 +47,3 @@
   </div>
 {% endfor %}
 </div>
-
-
-{% for field in profile_form %}
-  <div class="form-group">
-    {{ field.label_tag }}
-    {% if field|is_picture %}
-    <img src="{{ user.profile.picture.url }}" alt="profile picture" class="shadow ounded-circle" style="width:90px; margin-top:0;"/><br/>
-    <label for="id_picture" class="btn btn-secondary">Select file</label>
-    <br/>
-    {% endif %}
-    {% render_field field class=field|input_class %}
-    {% for error in field.errors %}
-      <div class="invalid-feedback">
-        {{ error }}
-      </div>
-    {% endfor %}
-    {% if field.help_text %}
-      <small class="form-text text-muted">
-        {{ field.help_text|safe }}
-      </small>
-    {% endif %}
-  </div>
-{% endfor %}

@@ -22,9 +22,13 @@ input{
 
 .form-group-accounts{
   display: grid;
-  grid-template-columns: 40vw 40vw;
+  grid-template-columns:repeat(2, 1fr);
   grid-column-gap: 1em;
   grid-row-gap: 1em;
 }
 .form-group-accounts div{
+}
+
+.input-file{
+  display: none;
 }
