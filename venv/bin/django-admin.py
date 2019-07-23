@@ -1,4 +1,4 @@
-#!/home/ubuntu/myproject/venv/bin/python3.6
+#!/home/ubuntu/djangoAuth/venv/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
