@@ -13,7 +13,7 @@ class Profile(models.Model):
         (ADMIN, 'Admin'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
+    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, default=1)
     picture = models.ImageField(upload_to='images/', default='default.jpg')
 
     def __str__(self):

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, UserForm, ProfileForm
+from .forms import SignUpForm, UserForm, ProfileForm, RoleFormSet
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -28,8 +28,21 @@ def home(request):
 
 @login_required
 def users_profile(request):
-    profiles = Profile.objects.all()
-    return render(request, 'users_profile.html', {'profiles': profiles})
+    if request.method == 'POST':
+        profile_form = RoleFormSet(request.POST)
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'Your profile was successfully updated!')
+            return redirect('home')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = RoleFormSet()
+        profiles = Profile.objects.all()
+        profiles_and_form = zip(profiles,form)
+
+    return render(request, 'users_profile.html', {'profiles_and_form': profiles_and_form})
+
 
 # @method_decorator(login_required, name='dispatch')
 # class UserUpdateView(UpdateView):

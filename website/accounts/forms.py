@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.models import modelformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile
@@ -18,3 +19,5 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('picture',)
+
+RoleFormSet = modelformset_factory(Profile, fields=('role',))
