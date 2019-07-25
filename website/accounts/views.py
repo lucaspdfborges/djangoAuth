@@ -9,6 +9,7 @@ from django.views.generic import UpdateView
 from django.contrib.auth.models import User
 from django.db import transaction
 from django.contrib import messages
+from .models import Profile
 
 def signup(request):
     if request.method == 'POST':
@@ -24,6 +25,11 @@ def signup(request):
 
 def home(request):
      return render(request, 'home.html')
+
+@login_required
+def users_profile(request):
+    profiles = Profile.objects.all()
+    return render(request, 'users_profile.html', {'profiles': profiles})
 
 # @method_decorator(login_required, name='dispatch')
 # class UserUpdateView(UpdateView):

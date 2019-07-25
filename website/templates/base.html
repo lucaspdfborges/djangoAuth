@@ -29,6 +29,9 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
                   <a class="dropdown-item" href="{% url 'my_account' %}">My account</a>
                   <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
+                  {% if user.profile.isAdmin %}
+                  <a class="dropdown-item" href="{% url 'users_profile' %}">Users profile</a>
+                  {% endif %}
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                 </div>

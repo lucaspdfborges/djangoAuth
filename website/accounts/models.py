@@ -19,6 +19,12 @@ class Profile(models.Model):
     def __str__(self):
         return (self.user.first_name + ' ' + self.user.last_name)
 
+    def name(self):
+        if len(self.user.first_name + ' ' + self.user.last_name) > 1:
+            return (self.user.first_name + ' ' + self.user.last_name)
+        else:
+            return self.user.username
+
     def isStaff(self):
         if self.role is 2:
             return True

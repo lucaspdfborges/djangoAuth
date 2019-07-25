@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My account{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">My account</li>
+{% endblock %}
+
+{% block content %}
+
+{% for profile in profiles %}
+  <div class="card" style="width: 12rem;">
+    <img src="{{ profile.picture.url }}" alt="profile picture" class="card-img-top"/>
+    <div class="card-body">
+      <h5 class="card-title">{{ profile.name }}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+{% endfor %}
+
+    <form enctype="multipart/form-data" method="post" novalidate>
+      {% csrf_token %}
+      {% include 'includes/account_form.html' %}
+      <button type="submit" class="btn btn-success">Save changes</button>
+    </form>
+
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'js/users_profile.js' %}"></script>
+{% endblock %}
