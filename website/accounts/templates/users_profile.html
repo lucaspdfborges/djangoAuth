@@ -9,10 +9,10 @@
   <li class="breadcrumb-item active">My account</li>
 {% endblock %}
 
+{% block content %}
+
     <form enctype="multipart/form-data" method="post" novalidate>
       {% csrf_token %}
-      {% block content %}
-
         <div class="d-flex flex-row justify-content-between">.
           {% for profile, form in profiles_and_form %}
             <div class="card" style="width: 14rem;">

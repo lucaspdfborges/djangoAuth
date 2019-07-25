@@ -32,10 +32,8 @@ def users_profile(request):
         profile_form = RoleFormSet(request.POST)
         if profile_form.is_valid():
             profile_form.save()
-            messages.success(request, 'Your profile was successfully updated!')
             return redirect('home')
-        else:
-            messages.error(request, 'Please correct the error below.')
+
     else:
         form = RoleFormSet()
         profiles = Profile.objects.all()
