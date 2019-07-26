@@ -11,24 +11,31 @@
 
 {% block content %}
 
-    <form enctype="multipart/form-data" method="post" novalidate>
-      {% csrf_token %}
-      {{ formset.management_form }}
-        <div class="d-flex flex-row justify-content-between">
-          {% for form in formset %}
-            <div class="card" style="width: 14rem;">
-              <img src="{{ profile.picture.url }}" alt="profile picture" class="card-img-top"/>
-              <div class="card-body">
-                <h5 class="card-title">Profile Name</h5>
-                {% for field in form %}
-                  {% render_field field class="custom-select" %}
-                {% endfor %}
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      <button type="submit" class="btn btn-success mt-4">Save changes</button>
-    </form>
+<form enctype="multipart/form-data" method="post" novalidate>
+  {% csrf_token %}
+  {{ formset.management_form }}
+  <div class="d-flex flex-row flex-wrap justify-content-between">
+    {% for form in formset %}
+    <div class="card" style="width: 14rem;">
+      {% with index=forloop.counter|get_index %}
+      {% with profile=profiles|get_object:index %}
+
+      <img src="{{ profile.picture.url }}" alt="profile picture" class="card-img-top"/>
+      <div class="card-body">
+
+        <h5>{{ profile.name }}</h5>
+        {% endwith %}
+        {% endwith %}
+
+        {% for field in form %}
+        {% render_field field class="custom-select" %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button type="submit" class="btn btn-success mt-4">Save changes</button>
+</form>
 
 
 

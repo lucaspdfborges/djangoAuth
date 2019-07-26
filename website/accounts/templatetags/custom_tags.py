@@ -12,5 +12,12 @@ def get_item(value):
     print(value)
     print([i for i in value])
 
-
     return 'x.x'
+
+@register.filter
+def get_index(value):
+    return int(value-1)
+
+@register.filter
+def get_object(array, num):
+    return array[int(num)]

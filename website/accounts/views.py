@@ -39,7 +39,7 @@ def users_profile(request):
         formset = RoleFormSet(queryset=profiles)
         profiles_and_formset = zip(profiles,formset)
 
-    return render(request, 'users_profile.html', {'formset': formset})
+    return render(request, 'users_profile.html', {'formset':formset, 'profiles': profiles})
 
 
 # @method_decorator(login_required, name='dispatch')
