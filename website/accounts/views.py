@@ -3,6 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm, UserForm, ProfileForm, RoleFormSet
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView
@@ -26,7 +27,14 @@ def signup(request):
 def home(request):
      return render(request, 'home.html')
 
+def user_is_admin(user):
+    return user.profile.isAdmin()
+
+def user_is_staff(user):
+    return user.profile.isStaff()
+
 @login_required
+@user_passes_test(user_is_admin)
 def users_profile(request):
     if request.method == 'POST':
         profile_form = RoleFormSet(data=request.POST)
@@ -37,7 +45,6 @@ def users_profile(request):
     else:
         profiles = Profile.objects.all()
         formset = RoleFormSet(queryset=profiles)
-        profiles_and_formset = zip(profiles,formset)
 
     return render(request, 'users_profile.html', {'formset':formset, 'profiles': profiles})
 
