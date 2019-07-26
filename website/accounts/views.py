@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm, UserForm, ProfileForm, RoleFormSet
@@ -29,17 +29,17 @@ def home(request):
 @login_required
 def users_profile(request):
     if request.method == 'POST':
-        profile_form = RoleFormSet(request.POST)
+        profile_form = RoleFormSet(data=request.POST)
         if profile_form.is_valid():
             profile_form.save()
             return redirect('home')
 
     else:
-        form = RoleFormSet()
         profiles = Profile.objects.all()
-        profiles_and_form = zip(profiles,form)
+        formset = RoleFormSet(queryset=profiles)
+        profiles_and_formset = zip(profiles,formset)
 
-    return render(request, 'users_profile.html', {'profiles_and_form': profiles_and_form})
+    return render(request, 'users_profile.html', {'formset': formset})
 
 
 # @method_decorator(login_required, name='dispatch')

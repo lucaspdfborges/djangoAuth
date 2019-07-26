@@ -20,4 +20,4 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('picture',)
 
-RoleFormSet = modelformset_factory(Profile, fields=('role',))
+RoleFormSet = modelformset_factory(Profile, fields=('role',), extra=0)
