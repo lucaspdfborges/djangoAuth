@@ -31,7 +31,8 @@ def user_is_admin(user):
     return user.profile.isAdmin()
 
 def user_is_staff(user):
-    return user.profile.isStaff()
+    output = user.profile.isStaff() or user.profile.isAdmin()
+    return output
 
 @login_required
 @user_passes_test(user_is_admin)
@@ -58,7 +59,6 @@ def users_profile(request):
 
 #     def get_object(self):
 #         return self.request.user
-
 
 @login_required
 @transaction.atomic

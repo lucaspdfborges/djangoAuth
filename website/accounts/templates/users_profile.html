@@ -14,9 +14,10 @@
 <form enctype="multipart/form-data" method="post" novalidate>
   {% csrf_token %}
   {{ formset.management_form }}
+  <button type="submit" class="btn btn-success mb-4">Save changes</button>
   <div class="d-flex flex-row flex-wrap justify-content-between">
     {% for form in formset %}
-    <div class="card" style="width: 14rem;">
+    <div class="card mb-3" style="width: 14rem;">
       {% with index=forloop.counter|get_index %}
       {% with profile=profiles|get_object:index %}
 
@@ -34,7 +35,6 @@
     </div>
     {% endfor %}
   </div>
-  <button type="submit" class="btn btn-success mt-4">Save changes</button>
 </form>
 
 
