@@ -49,17 +49,6 @@ def users_profile(request):
 
     return render(request, 'users_profile.html', {'formset':formset, 'profiles': profiles})
 
-
-# @method_decorator(login_required, name='dispatch')
-# class UserUpdateView(UpdateView):
-#     model = User
-#     fields = ('first_name', 'last_name', 'email',)
-#     template_name = 'my_account.html'
-#     success_url = reverse_lazy('my_account')
-
-#     def get_object(self):
-#         return self.request.user
-
 @login_required
 @transaction.atomic
 def update_profile(request):
