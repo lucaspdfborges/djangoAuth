@@ -22,10 +22,10 @@ def signup(request):
     else:
         form = SignUpForm()
 
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'auth/signup.html', {'form': form})
 
 def home(request):
-     return render(request, 'home.html')
+     return render(request, 'home/index.html')
 
 def user_is_admin(user):
     return user.profile.isAdmin()
@@ -47,7 +47,7 @@ def users_profile(request):
         profiles = Profile.objects.all()
         formset = RoleFormSet(queryset=profiles)
 
-    return render(request, 'users_profile.html', {'formset':formset, 'profiles': profiles})
+    return render(request, 'auth/users_profile.html', {'formset':formset, 'profiles': profiles})
 
 @login_required
 @transaction.atomic
@@ -65,7 +65,7 @@ def update_profile(request):
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'my_account.html', {
+    return render(request, 'auth/my_account.html', {
         'user_form': user_form,
         'profile_form': profile_form
     })

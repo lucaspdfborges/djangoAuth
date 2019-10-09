@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% include 'home/logged.html' %}
+  {% else %}
+    {% include 'home/not_logged.html' %}
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
