@@ -11,7 +11,7 @@
 {% for field in profile_form %}
 
   <div class="form-group">
-    <img id='profile_img' src="{{ user.profile.picture.url }}" alt="profile picture" class="img-thumbnail rounded-circle" style="width:90px; margin-top:0;"/>
+    <img id='profile_img' src="{{ user.profile.picture.url }}" alt="profile picture" class="img-thumbnail rounded-circle m-3" style="width:90px; margin-top:0;"/>
     <label for="id_picture" class="btn btn-light">Select file</label>
     <div class="input-file">
       {% render_field field class=field|input_class %}

@@ -1,0 +1,8 @@
+#profile_img{
+  width:120px !important;
+  height:120px !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+}

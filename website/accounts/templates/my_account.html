@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
 {% block title %}My account{% endblock %}
 
 {% block breadcrumb %}
